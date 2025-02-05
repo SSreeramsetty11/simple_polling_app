@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favorite Sport</title>
+</head>
+<body>
+    <h1>What is your favorite sport?</h1>
+    <form method="POST">
+        {% for sport in sports %}
+            <label>
+                <input type="radio" name="sport" value="{{ sport }}"> {{ sport }}
+            </label><br>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+</head>
+<body>
+    <h1>Poll Results</h1>
+    <img src="{{ sports_chart }}" alt="Sports Chart">
+    <h2>Favorite Players</h2>
+    {% for player_chart in player_charts %}
+        <img src="{{ player_chart }}" alt="Player Chart">
+    {% endfor %}
+</body>
+</html>
