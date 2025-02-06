@@ -1,1 +1,1 @@
-votes_sports = {'Basketball': 1, 'Soccer': 9, 'Football': 1, 'Cricket': 1}
+votes_sports = {'Basketball': 0, 'Soccer': 0, 'Football': 0, 'Cricket': 0}
