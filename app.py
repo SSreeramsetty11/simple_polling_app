@@ -59,10 +59,10 @@ def poll_player(sport):
 
 @app.route("/results")
 def results():
-    generate_chart(votes_sports, "Favorite Sport", "/home/Saket11/simple polling app/static/sports_chart.png")
+    generate_chart(votes_sports, "Favorite Sport", "static/sports_chart.png")
     for sport in votes_players:
         generate_player_chart(sport)
-    return render_template("results.html", sports_chart="/home/anilk/simple polling app/static/sports_chart.png", player_charts=[f"static/{sport}_player_chart.png" for sport in votes_players])
+    return render_template("results.html", sports_chart="static/sports_chart.png", player_charts=[f"static/{sport}_player_chart.png" for sport in votes_players])
 
 if __name__ == "__main__":
     app.run(debug=True)
