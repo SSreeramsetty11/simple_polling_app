@@ -44,9 +44,6 @@ def poll_sport():
 
 @app.route("/poll/<sport>", methods=["GET", "POST"])
 def poll_player(sport):
-    if sport not in votes_players:
-        return "Invalid sport!", 400
-
     if request.method == "POST":
         player = request.form.get("player")
         if player:
