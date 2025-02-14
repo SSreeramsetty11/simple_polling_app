@@ -1,1 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
 venv/
+env/
+ENV/
+.venv/
+.virtualenv/
+
+.idea/
+
+# Python egg files
+*.egg-info/
+*.egg
+
+# Logs & databases
+*.log
+*.sqlite3
+*.db
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Cache and temporary files
+*.swp
+*.swo
+*.swn
+.DS_Store
+*.bak
+*.tmp
+*.log
+*.~undo-tree~
+*~
+
+# Static file cache (optional for Flask/Django

@@ -1,17 +1,48 @@
 from flask import Flask, request, redirect, render_template, url_for
 import matplotlib.pyplot as plt
 import os
+import json
 
 app = Flask(__name__)
 
-from sports_votes import votes_sports
-from players_votes import votes_players
+# Get the current working directory dynamically
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))   # Ensures correct path on PythonAnywhere and local machine
+
+SPORTS_VOTES_FILE = os.path.join(BASE_DIR, "sports_votes.json")
+PLAYERS_VOTES_FILE = os.path.join(BASE_DIR, "players_votes.json")
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+
+# Ensure the 'static' folder exists
+if not os.path.exists(STATIC_DIR):
+    os.makedirs(STATIC_DIR)
+
+
+def load_votes():
+    print(SPORTS_VOTES_FILE)
+    print(PLAYERS_VOTES_FILE)
+    if not os.path.exists(SPORTS_VOTES_FILE):
+        with open(SPORTS_VOTES_FILE, "w") as f:
+            json.dump({}, f)  # Create an empty JSON file with {}
+    if not os.path.exists(PLAYERS_VOTES_FILE):
+        with open(PLAYERS_VOTES_FILE, "w") as f:
+            json.dump({}, f)  # Create an empty JSON file with {}
+    
+    with open(SPORTS_VOTES_FILE, "r") as f:
+        sports = json.load(f)
+    with open(PLAYERS_VOTES_FILE, "r") as f:
+        players = json.load(f)
+    
+    return sports, players
+
+# loads the data from the file for the first time only
+votes_sports, votes_players = load_votes() 
+
 
 def save_votes():
-    with open("sports_votes.py", "w") as f:
-        f.write(f"votes_sports = {votes_sports}\n")
-    with open("players_votes.py", "w") as f:
-        f.write(f"votes_players = {votes_players}\n")
+    with open(SPORTS_VOTES_FILE, "w") as f:
+        json.dump(votes_sports, f, indent=4)
+    with open(PLAYERS_VOTES_FILE, "w") as f:
+        json.dump(votes_players, f, indent=4)     
 
 def generate_chart(data, title, filename):
     plt.figure(figsize=(6, 4))
